@@ -1,0 +1,44 @@
+[
+  {
+    "subject": "¡Celebra la Independencia con nosotros!",
+    "from": "eventos@celebracionindependencia.com",
+    "to": "clientes@amazon.com",
+    "content": "Únete a nosotros para celebrar el espíritu de la independencia este 4 de julio. Habrá música, comida, fuegos artificiales y mucha diversión para toda la familia. ¡No te lo pierdas!"
+  },
+  {
+    "subject": "Descuento especial por el Día de la Independencia",
+    "from": "promociones@tiendanacional.com",
+    "to": "ofertas@microsoft.com",
+    "content": "Celebra con nosotros la independencia de América y aprovecha un descuento especial del 20% en todos nuestros productos. ¡Es nuestra forma de decir gracias por tu apoyo!"
+  },
+  {
+    "subject": "Recordatorio: Oficina cerrada el 4 de julio",
+    "from": "administracion@empresa.com",
+    "to": "empleados@apple.com",
+    "content": "Como recordatorio, la oficina estará cerrada el próximo lunes 4 de julio en observancia del Día de la Independencia. ¡Disfruten del merecido descanso!"
+  },
+  {
+    "subject": "Invitación especial: BBQ de Independencia",
+    "from": "eventos@celebracionindependencia.com",
+    "to": "rsvp@coca-cola.com",
+    "content": "¡Únete a nosotros para una BBQ especial en honor al Día de la Independencia! Habrá comida deliciosa, música en vivo y actividades para toda la familia. Confirma tu asistencia cuanto antes."
+  },
+  {
+    "subject": "Venta Especial de 4 de Julio",
+    "from": "ofertas@tiendadecomputadoras.com",
+    "to": "clientes@bestbuy.com",
+    "content": "¡Celebra la independencia con nuestras ofertas especiales de electrónicos! Desde laptops hasta televisores, tenemos descuentos increíbles. ¡No te lo pierdas!"
+  },
+  {
+    "subject": "¡Fuegos Artificiales en tu Vecindario!",
+    "from": "comunidad@celebracionbarriolocal.com",
+    "to": "residents@walmart.com",
+    "content": "¡Celebra el 4 de julio con una exhibición de fuegos artificiales en tu vecindario! Únete a nosotros en el estacionamiento de Walmart a las 8pm para disfrutar de este espectáculo."
+  },
+  {
+    "subject": "Recordatorio: Horario Especial por la Independencia",
+    "from": "servicioalcliente@compañiadetrenes.com",
+    "to": "pasajeros@amtrak.com",
+    "content": "Queridos pasajeros, les recordamos que el servicio de trenes tendrá un horario especial el 4 de julio en conmemoración de la Independencia. Por favor, revisen los horarios actualizados en nuestro sitio web."
+  }
+]
