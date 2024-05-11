@@ -7,6 +7,7 @@ use App\Entity\Email;
 use App\Repository\EmailRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -16,22 +17,25 @@ class PizzaController extends AbstractController
     {
 
     }
-    #[Route('/pizza', name: 'app_pizza')]
+    #[Route('/send', name: 'send_emails', options: ['expose'=>true], methods: ["POST"])]
     public function index(EmailRepository $emailRepository): JsonResponse
     {
 
-        $emailsNotSended = $emailRepository->findBy([
-            'sended' => Email::NOT_SENDED
-        ], ['createdAt' => 'DESC']);
 
-        foreach ($emailsNotSended as $email) {
+//        foreach ($emailsNotSended as $email) {
+//
+//            $this->commandBus->dispatch(new EmailCommand($email));
+//        }
 
-            $this->commandBus->dispatch(new EmailCommand($email));
-        }
+        return $this->json(['code'=> 200,'status'=>'server:ok']);
 
-        return $this->json([
-            'messages' => 'dispatched'
+    }
+
+    #[Route('/list', name: 'list_emails')]
+    public function list(EmailRepository $emailRepository): Response
+    {
+        return $this->render('emails/list.html.twig', [
+            'emails' => $emailRepository->findAll()
         ]);
-
     }
 }

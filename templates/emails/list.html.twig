@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/pico.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/pico.blue.css') }}" />
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <form action="{{ path('send_emails') }}" method="POST" id="form-emails">
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">To</th>
+                    <th scope="col">From</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for email in emails %}
+                    <tr>
+                        <th scope="col">{{ email.subject }}</th>
+                        <th scope="col">{{ email.toWho }}</th>
+                        <th scope="col"><div class="pico-color-amber-250">{{ email.fromWho }}</div></th>
+                        <th scope="col">{{ email.content }}</th>
+                        <th scope="col"> <label>
+                                <label>
+                                    <input type="checkbox" name="email" {% if email.sended %}checked{% endif %}  value="{{ email.id }}"/>
+                                </label>
+                            </label></th>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            Para los elementos seleccionados <button id="submit-form"><i class="fa-regular fa-paper-plane"></i>&nbsp;Enviar email</button>
+        </form>
+    </div>
+    <dialog id="successDialog">
+        <article>
+            <h2><i class="fa-regular fa-circle-check"></i>&nbsp;Email sended successfully!!</h2>
+            <p>
+            <p>Thank you for contacting us. Our team will get back to you as soon as possible.</p>
+            </p>
+
+            <footer>
+                <button id="close-dialog">Close</button>
+            </footer>
+        </article>
+    </dialog>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        function showModalForSuccess() {
+            let dialog = document.getElementById("successDialog");
+            dialog.showModal();
+        }
+
+
+        function hideModal() {
+            let dialog = document.getElementById("successDialog");
+            dialog.close("animalNotChosen");
+        }
+
+        window.addEventListener("load", function (event) {
+            console.log('loaded');
+            let submitForm = document.getElementById('submit-form');
+            submitForm.addEventListener('click',async function (event) {
+                event.preventDefault();
+
+                let form = document.getElementById('form-emails');
+
+                const values = new URLSearchParams(new FormData(form));
+
+                const response = await fetch(Routing.generate('send_emails'),{
+                   body : values,
+                   method : 'POST'
+                });
+
+                const responseServer = await response.json();
+
+                if(responseServer.code === 200) {
+                    showModalForSuccess();
+                }
+                console.log(responseServer);
+
+            });
+
+            let closeDialog = document.getElementById('close-dialog');
+            closeDialog.addEventListener('click',function (){
+                hideModal();
+            })
+
+        });
+
+    </script>
+{% endblock %}
