@@ -24,11 +24,11 @@
                         <th scope="col">{{ email.toWho }}</th>
                         <th scope="col"><div class="pico-color-amber-250">{{ email.fromWho }}</div></th>
                         <th scope="col">{{ email.content }}</th>
-                        <th scope="col"> <label>
+                        <th scope="col"><label>
                                 <label>
-                                    <input type="checkbox" name="email" {% if email.sended %}checked{% endif %}  value="{{ email.id }}"/>
+                                    <input type="checkbox" name="email[]" {% if email.sended %}checked{% endif %}  value="{{ email.id }}"/>
                                 </label>
-                            </label></th>
+                        </label></th>
                     </tr>
                 {% endfor %}
             </table>
@@ -41,8 +41,6 @@
             <h2><i class="fa-regular fa-circle-check"></i>&nbsp;Email sended successfully!!</h2>
             <p>
             <p>Thank you for contacting us. Our team will get back to you as soon as possible.</p>
-            </p>
-
             <footer>
                 <button id="close-dialog">Close</button>
             </footer>
@@ -64,11 +62,12 @@
             dialog.close("animalNotChosen");
         }
 
-        window.addEventListener("load", function (event) {
+        window.addEventListener("load", function () {
             console.log('loaded');
             let submitForm = document.getElementById('submit-form');
             submitForm.addEventListener('click',async function (event) {
                 event.preventDefault();
+
 
                 let form = document.getElementById('form-emails');
 
