@@ -16,20 +16,17 @@ class EmailRepository extends ServiceEntityRepository
         parent::__construct($registry, Email::class);
     }
 
-    //    /**
-    //     * @return Email[] Returns an array of Email objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('e')
-    //            ->andWhere('e.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('e.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+        public function findByNotYetSended(): ?Email
+        {
+            return $this->createQueryBuilder('e')
+                ->andWhere('e.sended = :val')
+                ->setParameter('val', Email::NOT_SENDED)
+                ->orderBy('e.createdAt', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getOneOrNullResult()
+            ;
+        }
 
     //    public function findOneBySomeField($value): ?Email
     //    {
