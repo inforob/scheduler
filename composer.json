@@ -10,6 +10,8 @@
         "friendsofsymfony/jsrouting-bundle": "^3.5",
         "nyholm/psr7": "*",
         "psr/http-client": "^1.0",
+        "react/http": "^1.10",
+        "react/socket": "^1.15",
         "symfony/asset": "6.4.*",
         "symfony/console": "6.4.*",
         "symfony/doctrine-messenger": "6.4.*",

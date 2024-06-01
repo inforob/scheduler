@@ -5,7 +5,7 @@
         window.addEventListener("load", (event) => {
 
             // Crear una nueva instancia de EventSource
-            const eventSource = new EventSource('{{ path('sse') }}');
+            const eventSource = new EventSource('http://127.0.0.1:8080');
 
             eventSource.onopen = function(event) {
                 console.log('connection established!');
