@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Command\Email\EmailCommand;
-use App\Entity\Email;
 use App\Repository\EmailRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class PizzaController extends AbstractController
 {
-    public function __construct(private readonly MessageBusInterface $commandBus, private readonly EntityManagerInterface $entityManager)
+    public function __construct(private readonly MessageBusInterface $commandBus)
     {
 
     }
@@ -66,6 +65,9 @@ class PizzaController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws Exception
+     */
     #[Route('/sse', name: 'sse')]
     public function streamTime(): StreamedResponse
     {
@@ -90,8 +92,7 @@ class PizzaController extends AbstractController
         });
 
         $response->headers->set('Content-Type', 'text/event-stream');
-        $response->headers->set('X-Accel-Buffering', 'no');
-        $response->headers->set('Cach-Control', 'no-cache');
+        $response->headers->set('Cache-Control', 'no-cache');
         $response->send();
 
         return $response;

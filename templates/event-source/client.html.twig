@@ -20,7 +20,10 @@
 
             // Manejar el evento 'error'
             eventSource.onerror = function(event) {
-                console.error('Error receiving server-sent events', event);
+                if(event.target.readyState === EventSource.CLOSED) {
+                    console.error('Error receiving server-sent events', event);
+                    eventSource.close();
+                }
             };
 
         });
