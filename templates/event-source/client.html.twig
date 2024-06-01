@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    <script>
+        window.addEventListener("load", (event) => {
+
+            // Crear una nueva instancia de EventSource
+            const eventSource = new EventSource('{{ path('sse') }}');
+
+            eventSource.onopen = function(event) {
+                console.log('connection established!');
+            };
+
+            // Manejar el evento 'message' para recibir datos del servidor
+            eventSource.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                document.getElementById('time').innerText = data.time;
+                document.getElementById('code').innerText = data.message;
+            };
+
+            // Manejar el evento 'error'
+            eventSource.onerror = function(event) {
+                console.error('Error receiving server-sent events', event);
+            };
+
+        });
+    </script>
+{% endblock %}
+
+
+{% block body %}
+
+    <h1>Current Time:</h1>
+    <div id="time"></div>
+    <div id="code"></div>
+
+{% endblock %}
